@@ -1,0 +1,45 @@
+﻿<md-dialog aria-label="Client Needs" ng-cloak flex="80">
+    <form name="clientFamilyForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Client Family</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cf.closeDialog()" ng-disabled="clientFamilyForm.$invalid">
+                    <md-icon md-svg-src="content/image/minus.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content" layout="row">
+                <div ng-form="familyForm" name="familyForm" class="family-form" ng-repeat="family in cf.ClientFamilies" flex layout="column">
+                    <md-input-container flex="30">
+                        <label>Family Member {{$index+1}} Name</label>
+                        <input type="text" name="name" ng-model="family.name" required />
+                        <div ng-messages="familyForm.name.$error">
+                            <div ng-message="required">This field is required</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex="15">
+                        <label>Family Member {{$index+1}} Age</label>
+                        <input type="text" ng-model="family.age" />
+                    </md-input-container>
+                    <md-input-container flex="15">
+                        <label>Family Member {{$index+1}} Birth Year</label>
+                        <input type="number" ng-model="family.birthYear" />
+                    </md-input-container>
+                    <md-checkbox ng-model="family.liveWith">Lives With</md-checkbox>
+                    <md-button class="md-icon-button md-secondary" ng-click="cf.removeFamily($index)">
+                        <md-tooltip>Remove Family Member {{$index+1}}</md-tooltip>
+                        <md-icon md-svg-src="content/image/ex.svg" aria-label="Remove Family Member"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+    <md-dialog-actions layout="row">
+        <md-button class="md-accent md-fab" aria-label="Add Family" ng-click="cf.addFamily()">
+            <md-tooltip>Add Family Member</md-tooltip>
+            <md-icon md-svg-src="content/image/plus.svg"></md-icon>
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

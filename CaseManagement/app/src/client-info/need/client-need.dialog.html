@@ -1,0 +1,71 @@
+﻿<md-dialog aria-label="Client Needs" ng-cloak flex="80" id="need-dialog">
+    <form name="clientNeedForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Client Needs</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cn.closeDialog()" ng-disabled="clientNeedForm.$invalid">
+                    <md-icon md-svg-src="content/image/minus.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content" layout="row">
+                <md-list class="need-list" flex>
+                    <md-subheader>Active Needs</md-subheader>
+                    <md-list-item ng-repeat="need in cn.ClientNeeds | filter: {met: false}">
+                        <ng-form name="needForm" flex>
+                            <md-input-container flex="50">
+                                <label>Need</label>
+                                <md-select name="need" ng-model="need.needId" aria-label="Need Drop Down" required>
+                                    <md-option ng-repeat="n in cn.needOptions" value="{{n.needId}}">{{n.needName}}</md-option>
+                                </md-select>
+                                <div ng-messages="needForm.need.$error">
+                                    <div ng-message="required">This field is required</div>
+                                </div>
+                            </md-input-container>
+                            <md-button class="md-icon-button md-secondary my-first" ng-click="cn.deactivateNeed(need)">
+                                <md-tooltip>Deactivate Need</md-tooltip>
+                                <md-icon md-svg-src="content/image/forward.svg" aria-label="Deactivate Need"></md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button md-secondary my-second" ng-click="cn.removeNeed(n.clientNeedId)">
+                                <md-tooltip>Remove Need</md-tooltip>
+                                <md-icon md-svg-src="content/image/ex.svg" aria-label="Remove Need"></md-icon>
+                            </md-button>
+                        </ng-form>
+                    </md-list-item>
+                </md-list>
+                <md-list class="need-list" flex>
+                    <md-subheader>Met Needs</md-subheader>
+                    <md-list-item ng-repeat="need in cn.ClientNeeds | filter: {met: true}">
+                        <ng-form name="needForm" flex>
+                            <md-input-container flex="30">
+                                <label>Need</label>
+                                <md-select name="need" ng-model="need.needId" aria-label="Need Drop Down" required>
+                                    <md-option ng-repeat="n in cn.needOptions" value="{{n.needId}}">{{n.needName}}</md-option>
+                                </md-select>
+                                <div ng-messages="needForm.need.$error">
+                                    <div ng-message="required">This field is required</div>
+                                </div>
+                            </md-input-container>
+                            <md-button class="md-icon-button md-secondary my-first" ng-click="cn.activateNeed(need)">
+                                <md-tooltip>Activate Need</md-tooltip>
+                                <md-icon md-svg-src="content/image/reply.svg" aria-label="Activate Need"></md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button md-secondary my-second" ng-click="cn.removeNeed(n.clientNeedId)">
+                                <md-tooltip>Remove Need</md-tooltip>
+                                <md-icon md-svg-src="content/image/ex.svg" aria-label="Remove Need"></md-icon>
+                            </md-button>
+                        </ng-form>
+                    </md-list-item>
+                </md-list>
+            </div>
+        </md-dialog-content>
+    </form>
+    <md-dialog-actions layout="row">
+        <md-button class="md-accent md-fab" aria-label="Add Need" ng-click="cn.addNeed()">
+            <md-tooltip>Add a Need</md-tooltip>
+            <md-icon md-svg-src="content/image/plus.svg"></md-icon>
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

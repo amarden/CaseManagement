@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="app.min.css" />
+    <script src="vendor.min.js"></script>
+    <script src="app.min.js"></script>
+</head>
+<body ng-app="caseManagement" ng-controller="MainCtrl as mc">
+    <md-toolbar class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="mc.goHome()" aria-label="Go Home">
+            <md-icon md-svg-icon="content/image/home.svg"></md-icon>
+        </md-button>
+        <h2>{{mc.title}}</h2>
+        <md-button ng-show="mc.showAdmin" class="md-icon-button" ng-click="mc.navToAdmin()" aria-label="Go To Admin">
+            <md-icon md-svg-icon="content/image/cog.svg"></md-icon>
+        </md-button>
+    </md-toolbar>
+    <div flex ui-view></div>
+</body>
+</html>

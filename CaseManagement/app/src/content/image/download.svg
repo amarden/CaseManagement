@@ -1,0 +1,7 @@
+﻿<svg class="icon icon-box-add">
+  <use xlink:href="#icon-box-add"></use>
+  <symbol id="icon-box-add" viewBox="0 0 1024 1024">
+    <title>box-add</title>
+    <path class="path1" d="M832 64h-640l-192 192v672c0 17.674 14.326 32 32 32h960c17.672 0 32-14.326 32-32v-672l-192-192zM512 832l-320-256h192v-192h256v192h192l-320 256zM154.51 192l64-64h586.978l64 64h-714.978z"></path>
+  </symbol>
+</svg>

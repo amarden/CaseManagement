@@ -1,0 +1,149 @@
+﻿<md-button class="md-accent md-fab md-fab-top-right" aria-label="Save"
+           ng-click="cc.save()" ng-disabled="clientForm.$invalid || cc.disabledSave"
+           ng-class="{ 'unsaved': clientForm.$dirty }"
+           style="position:fixed">
+    <md-tooltip>Save Changes</md-tooltip>
+    <md-icon md-svg-src="content/image/save.svg"></md-icon>
+</md-button>
+<md-button class="md-accent md-fab md-fab-bottom-right" 
+           ng-show="cc.clientExists()"
+           aria-label="Add Visit" 
+           ng-click="cc.addVisit()">
+    <md-tooltip>Create New Visit</md-tooltip>
+    <md-icon md-svg-src="content/image/plus.svg"></md-icon>
+</md-button>
+<form name="clientForm" layout="row" layout-padding>
+    <div layout="column" flex>
+        <div layout="column" flex>
+            <label class="md-caption">Intake Date</label>
+            <md-datepicker ng-model="cc.client.intakeDate" md-placeholder="Intake Date" required></md-datepicker>
+        </div>
+        <md-input-container>
+            <label>First Name</label>
+            <input type="text" name="firstName" ng-model="cc.client.firstName" required />
+            <div ng-messages="clientForm.firstName.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Last Name</label>
+            <input type="text" name="lastName" ng-model="cc.client.lastName" required />
+            <div ng-messages="clientForm.lastName.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Nick Name</label>
+            <input type="text" name="nickName" ng-model="cc.client.nickName" />
+        </md-input-container>
+        <div layout="column" flex>
+            <label class="md-caption">Date of Birth</label>
+            <md-datepicker ng-model="cc.client.dob" md-placeholder="Date of Birth"></md-datepicker>
+        </div>
+    </div>
+    <div layout="column" flex>
+        <md-input-container>
+            <label>Address</label>
+            <textarea type="text" name="address" ng-model="cc.client.address" required></textarea>
+            <div ng-messages="clientForm.address.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Phone</label>
+            <input type="text" name="phone" ng-model="cc.client.phone"  ng-pattern="/^(\(?([0-9]{3})\)?)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/" md-maxlength="20" required />
+            <div ng-messages="clientForm.phone.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This is required.</div>
+                <div ng-message="pattern">This does not look like a phone number please use form (###) ###-####</div>
+                <div ng-message="md-maxlength">Phone Number must be less than 20 characters in length</div>
+
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Email</label>
+            <input type="text" name="email" ng-model="cc.client.email" ng-pattern="/^.+@.+\..+$/" />
+            <div ng-messages="clientForm.email.$error" ng-if="clientForm.$dirty">
+                <div ng-message="pattern">This does not look like an email address</div>
+            </div>
+        </md-input-container>
+        <md-checkbox ng-model="cc.client.canContact">Can Contact</md-checkbox>
+    </div>
+    <div layout="column" flex>
+        <md-input-container>
+            <label>Gender</label>
+            <md-select name="gender" ng-model="cc.client.genderId" required>
+                <md-option ng-repeat="e in cc.dropDown.gender" value="{{e.genderId}}">{{e.genderName}}</md-option>
+            </md-select>
+            <div ng-messages="clientForm.gender.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This field is required</div>
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Ethnicity</label>
+            <md-select name="ethnicity" ng-model="cc.client.ethnicityId" required>
+                <md-option ng-repeat="e in cc.dropDown.ethnicity" value="{{e.ethnicityId}}">{{e.ethnicityName}}</md-option>
+            </md-select>
+            <div ng-messages="clientForm.ethnicity.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This field is required</div>
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Race</label>
+            <md-select name="race" ng-model="cc.client.raceId" required>
+                <md-option ng-repeat="r in cc.dropDown.race" value="{{r.raceId}}">{{r.raceName}}</md-option>
+            </md-select>
+            <div ng-messages="clientForm.race.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This field is required</div>
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Primary Language</label>
+            <md-select name="language" ng-model="cc.client.languageId" required>
+                <md-option ng-repeat="l in cc.dropDown.language" value="{{l.languageId}}">{{l.languageName}}</md-option>
+            </md-select>
+            <div ng-messages="clientForm.language.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This field is required</div>
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Translation</label>
+            <md-select name="translation" ng-model="cc.client.translationId" required>
+                <md-option ng-repeat="t in cc.dropDown.translation" value="{{t.translationId}}">{{t.translationValue}}</md-option>
+            </md-select>
+            <div ng-messages="clientForm.translation.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This field is required</div>
+            </div>
+        </md-input-container>
+    </div>
+    <div layout="column" flex>
+        <md-input-container>
+            <label>Housing Status</label>
+            <md-select name="housingStatus" ng-model="cc.client.housingStatusId" required>
+                <md-option ng-repeat="h in cc.dropDown.housingStatus" value="{{h.housingStatusId}}">{{h.housingStatusName}}</md-option>
+            </md-select>
+            <div ng-messages="clientForm.housingStatus.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This field is required</div>
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Household Count</label>
+            <input type="number" ng-model="cc.client.houseHoldCount">
+        </md-input-container>
+        <md-checkbox ng-model="cc.client.houseLossRisk">Risk of House Loss</md-checkbox>
+        <md-checkbox ng-model="cc.client.veteran">Veteran</md-checkbox>
+        <md-input-container>
+            <label>Learn About</label>
+            <md-select name="learnAbout" ng-model="cc.client.learnAboutId" required>
+                <md-option ng-repeat="t in cc.dropDown.learnAbout" value="{{t.learnAboutId}}">{{t.learnAboutName}}</md-option>
+            </md-select>
+            <div ng-messages="clientForm.learnAbout.$error" ng-if="clientForm.$dirty">
+                <div ng-message="required">This field is required</div>
+            </div>
+        </md-input-container>
+    </div>
+</form>
+<client-side-nav client="cc.client"></client-side-nav>
+<md-button class="md-accent md-fab my-middle" aria-label="Open Side Nav" ng-click="cc.toggleRight()">
+    <md-tooltip md-direction="left">More Client Info</md-tooltip>
+    <md-icon md-svg-src="content/image/left-arrow.svg"></md-icon>
+</md-button>

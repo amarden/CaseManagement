@@ -1,0 +1,60 @@
+﻿<md-button class="md-accent md-fab md-fab-bottom-right" aria-label="Create Client"
+           ng-click="dc.createClient()" 
+           style="position:fixed">
+    <md-tooltip>Add New Client</md-tooltip>
+    <md-icon md-svg-src="content/image/plus.svg"></md-icon>
+</md-button>
+<div flex layout="row" layout-padding>
+    <div class="directory" flex>
+        <md-subheader>Client Directory</md-subheader>
+        <md-autocomplete md-selected-item="selectedItem" md-search-text="dc.searchText"
+                         md-search-text-change="dc.getMatches(dc.searchText)"
+                         md-items="item in dc.filtered"
+                         md-item-text="item.firstName"
+                         md-menu-class="autocomplete-custom-template"
+                         md-selected-item-change="dc.nav(item.clientId)"
+                         md-floating-label="Look Up Client">
+            <md-item-template>
+                <span class="item-title">
+                    <span md-highlight-text="dc.searchText">{{item.firstName}}</span>
+                    <span>{{item.lastName}}</span>
+                </span>
+                <span class="item-metadata">
+                    <span class="item-metastat">
+                        <strong>{{item.dob}}</strong>
+                    </span>
+                    <span class="item-metastat">
+                        <strong>{{item.gender}}</strong>
+                    </span>
+                </span>
+            </md-item-template>
+            <md-item-template>
+                <span md-highlight-text="dc.searchText">{{item.firstName}}</span>
+                <span>{{item.age}}</span>
+            </md-item-template>
+            <md-not-found>
+                No matches found.
+            </md-not-found>
+        </md-autocomplete>
+    </div>
+    <div class="follow-up-list" flex>
+        <md-radio-group ng-model="dc.status" layout="row" ng-change="dc.subsetFollowUps()">
+            <md-radio-button value="Upcoming"> Upcoming </md-radio-button>
+            <md-radio-button value="Overdue"> Overdue </md-radio-button>
+        </md-radio-group>
+        <md-subheader>{{dc.status}} Follow Ups</md-subheader>
+        <md-list>
+            <md-list-item ng-repeat="fu in dc.followUps">
+                {{fu.firstName}} - {{fu.dateFollowUp | date:'MM/dd/yyyy'}} 
+                <md-button class="md-icon-button" ng-click="dc.nav(fu.clientId)">
+                    <md-tooltip>Go To Client Page</md-tooltip>
+                    <md-icon md-svg-src="content/image/person.svg"></md-icon>
+                </md-button>
+                <md-button class="md-icon-button" ng-click="dc.navVisit(fu.clientVisitId)">
+                    <md-tooltip>Go To Visit Page that Led to Follow up</md-tooltip>
+                    <md-icon md-svg-src="content/image/text.svg"></md-icon>
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿<md-dialog aria-label="Registration" ng-cloak flex="80">
+    <form name="registrationForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Registration</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="rc.closeDialog()">
+                    <md-icon md-svg-src="content/image/minus.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content" layout="column" layout-padding>
+                <md-input-container flex="25">
+                    <label>User Name</label>
+                    <input type="text" ng-model="rc.userInfo.username" required />
+                </md-input-container>
+                <md-input-container flex="25">
+                    <label>Email</label>
+                    <input type="email" ng-model="rc.userInfo.email" required />
+                </md-input-container>
+                <md-input-container flex="25">
+                    <label>Password</label>
+                    <input type="password" name="password" minlength="6" ng-model="rc.userInfo.password" required />
+                    <div ng-messages="registrationForm.password.$error">
+                        <div ng-message="required">Password is required.</div>
+                        <div ng-message-exp="['minlength']">The password has to be more than 6 characters long.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex="25">
+                    <label>Confirm Password</label>
+                    <input type="password" ng-model="rc.userInfo.confirmPassword" required />
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+    </form>
+    <md-dialog-actions layout="row">
+        <md-button class="md-primary" aria-label="Register" ng-disabled="registrationForm.$invalid" ng-click="rc.register()">
+            Register
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

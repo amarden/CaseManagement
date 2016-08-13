@@ -1,0 +1,39 @@
+﻿<div flex layout="column" layout-padding>
+    <div flex layout="column">
+        <md-input-container flex>
+            <label>Drop Downs</label>
+            <md-select ng-model="chosen" ng-change="ac.getList(chosen)" required>
+                <md-option ng-repeat="dropDown in ac.dropDowns" value="{{dropDown.id}}">{{dropDown.name}}</md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div flex layout="row" ng-show="ac.dropDownList.length > 0" layout-padding>
+        <div flex>
+            <form name="itemForm" layout="column">
+                <md-input-container>
+                    <label>Add {{ac.dropDown.name}} Item</label>
+                    <input type="text" ng-model="ac.name" />
+                </md-input-container>
+                <md-button class="md-accent md-fab" aria-label="Save"
+                           ng-click="ac.save()" ng-disabled="!ac.name || ac.name.length == 0">
+                    <md-tooltip>Save Changes</md-tooltip>
+                    <md-icon md-svg-src="content/image/save.svg"></md-icon>
+                </md-button>
+            </form>
+        </div>
+        <div flex layout="row">
+            <md-content flex>
+                <md-subheader>{{ac.dropDown.name}} Items</md-subheader>
+                <md-list layout="column">
+                    <md-list-item ng-repeat="item in ac.dropDownList">
+                        {{item.name}}
+                        <md-button class="md-icon-button md-secondary" ng-click="ac.remove(item)">
+                            <md-tooltip>Remove Item</md-tooltip>
+                            <md-icon md-svg-src="content/image/ex.svg" aria-label="Remove Item"></md-icon>
+                        </md-button>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+﻿<div id="print-notes" flex layout="column">
+    <div>
+        <h4>Meeting on {{cv.ClientVisit.dateVisit | date: 'mediumDate' }}</h4>
+    </div>
+    <div ng-bind-html="cv.notes">
+    </div>
+</div>

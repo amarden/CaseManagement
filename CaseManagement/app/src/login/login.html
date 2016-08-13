@@ -1,0 +1,24 @@
+﻿<form name="loginForm" layout="column" class="login">
+    <md-input-container flex="25">
+        <label>User Name</label>
+        <input type="text" ng-model="lc.credentials.username" required />
+    </md-input-container>
+    <md-input-container flex="25">
+        <label>Password</label>
+        <input type="password" ng-model="lc.credentials.password" required />
+    </md-input-container>
+    <md-button id="login"
+                class="md-primary"
+                ng-disabled="loginForm.$invalid"
+                aria-label="Login"
+                 ng-class="{ 'login-animation': lc.loading }"
+                ng-click="lc.submit()">
+        Login
+    </md-button>
+    <md-button class="md-primary"
+               aria-label="Register"
+               ng-click="lc.openRegistration($event)">
+        Register
+    </md-button>
+    <span class="error">{{lc.errorMessage}}</span>
+</form>

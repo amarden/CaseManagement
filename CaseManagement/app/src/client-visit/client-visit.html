@@ -1,0 +1,149 @@
+﻿<md-button class="md-accent md-fab md-fab-top-right" aria-label="Save"
+           ng-click="cv.save()" ng-disabled="clientVisitForm.$invalid"
+           ng-class="{ 'unsaved': clientVisitForm.$dirty }"
+           style="position:fixed">
+    <md-tooltip>Save Changes</md-tooltip>
+    <md-icon md-svg-src="content/image/save.svg"></md-icon>
+</md-button>
+<md-button class="md-accent md-fab md-fab-bottom-right" aria-label="Print Visit Notes"
+           ng-click="cv.openNotes()"
+           style="position:fixed">
+    <md-tooltip>Print Notes</md-tooltip>
+    <md-icon md-svg-src="content/image/print.svg"></md-icon>
+</md-button>
+<form name="clientVisitForm" layout="row" layout-padding flex>
+    <div layout="column" flex="20">
+        <md-subheader>Visit Info</md-subheader>
+        <md-datepicker name="dateVisit" 
+                       ng-model="cv.ClientVisit.dateVisit" 
+                       md-placeholder="Date of Contact"
+                       required></md-datepicker>
+        <div class="validation-messages" ng-messages="clientVisitForm.dateVisit.$error" ng-if="clientVisitForm.$dirty">
+            <div ng-message="valid">The entered value is not a date!</div>
+            <div ng-message="required">This date is required!</div>
+        </div>
+        <md-input-container>
+            <label>Responder</label>
+            <md-select name="responder" ng-model="cv.ClientVisit.responderId" required>
+                <md-option ng-repeat="r in cv.dropDown.responder"
+                            value="{{r.responderId}}">{{r.responderName}}</md-option>
+            </md-select>
+            <div ng-messages="clientVisitForm.responder.$error" ng-if="clientVisitForm.$dirty">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
+        <md-input-container>
+            <label>Contact Type</label>
+            <md-select name="contactType" ng-model="cv.ClientVisit.contactTypeId" required>
+                <md-option ng-repeat="c in cv.dropDown.contactType"
+                            value="{{c.contactTypeId}}">{{c.contactTypeName}}</md-option>
+            </md-select>
+            <div ng-messages="clientVisitForm.contactType.$error" ng-if="clientVisitForm.$dirty">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
+        <md-subheader>Visit Outcome</md-subheader>
+        <md-input-container>
+            <label>Visit Result</label>
+            <md-select name="visitResult" ng-model="cv.ClientVisit.visitResultId" required>
+                <md-option ng-repeat="vis in cv.dropDown.visitResult"
+                            value="{{vis.visitResultId}}">{{vis.visitResultName}}</md-option>
+            </md-select>
+            <div ng-messages="clientVisitForm.visitResult.$error" ng-if="clientVisitForm.$dirty">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
+        <md-checkbox ng-model="cv.ClientVisit.followUp">Follow Up Needed</md-checkbox>
+        <md-datepicker name="followUpDate"
+                       ng-show="cv.needsFollowUp()"
+                       ng-model="cv.ClientVisit.dateFollowUp"
+                       md-placeholder="Follow Up Date"
+                       ng-required="cv.needsFollowUp()"></md-datepicker>
+        <div class="validation-messages" ng-messages="clientVisitForm.followUpDate.$error" ng-if="clientVisitForm.$dirty">
+            <div ng-message="valid">The entered value is not a date!</div>
+            <div ng-message="required">This date is required!</div>
+        </div>
+        <md-input-container>
+            <label>Minutes Spent on Client</label>
+            <input type="number" name="timeSpentMinutes" ng-model="cv.ClientVisit.timeSpentMintues" step="1" min="0" required/>
+            <div ng-messages="clientVisitForm.timeSpentMinutes.$error" ng-if="clientVisitForm.$dirty">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
+        <md-button class="md-fab md-accent" aria-label="Go To Client"
+                    ng-click="cv.navToClient()"
+                    style="position:fixed">
+            <md-tooltip md-direction="right">Go to Client Page</md-tooltip>
+            <md-icon md-svg-src="content/image/person.svg"></md-icon>
+        </md-button>
+    </div>
+    <div flex="50">
+        <md-subheader>Referrals</md-subheader>
+        <div ng-repeat="ref in cv.ClientVisit.ClientVisitReferrals" layout="column">
+            <ng-form name="referralFormName">
+                <md-input-container flex>
+                    <label>Type</label>
+                    <md-select name="referralType" ng-model="ref.referralTypeId" required>
+                        <md-option ng-repeat="r in cv.dropDown.referralType"
+                                   value="{{r.referralTypeId}}">{{r.referralTypeName}}</md-option>
+                    </md-select>
+                    <div ng-messages="referralFormName.referralType.$error" ng-if="clientVisitForm.$dirty">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <div layout="row" flex ng-if="cv.dropDown.agency">
+                    <agency ref="ref" agencies="cv.dropDown.agency" flex></agency>
+                    <md-input-container flex>
+                        <label>Agency Contact</label>
+                        <input type="text" ng-model="ref.contactName" />
+                    </md-input-container>
+                    <md-button class="md-icon-button" ng-click="cv.removeReferral($index)" aria-label="Remove This Referral">
+                        <md-icon md-svg-src="content/image/ex.svg"></md-icon>
+                    </md-button>
+                </div>
+                <md-checkbox ng-model="ref.isProvider">Record as Provider?</md-checkbox>
+                <br />
+                <md-input-container ng-show="ref.isProvider">
+                    <label>Need</label>
+                    <md-select name="need" ng-model="ref.needId" aria-label="Need Drop Down" ng-required="ref.isProvider">
+                        <md-option ng-repeat="n in cv.dropDown.needOptions" value="{{n.needId}}">{{n.needName}}</md-option>
+                    </md-select>
+                    <div ng-messages="needForm.need.$error">
+                        <div ng-message="required">This field is required</div>
+                    </div>
+                </md-input-container>
+            </ng-form>
+        </div>
+        <md-button class="md-accent md-fab md-bottom-right" ng-click="cv.addReferral()">
+            <md-tooltip>Add Referral</md-tooltip>
+            <md-icon md-svg-src="content/image/plus.svg" aria-label="Add Referral"></md-icon>
+        </md-button>
+    </div>
+    <div layout="column" flex="30">
+        <md-subheader>Findings</md-subheader>
+        <md-checkbox ng-model="cv.ClientVisit.housingChange">Housing Change</md-checkbox>
+        <md-checkbox ng-model="cv.ClientVisit.mentalHealthChange">Mental Health Change</md-checkbox>
+        <md-input-container>
+            <label>Notes</label>
+            <textarea type="text" name="notes" ng-model="cv.ClientVisit.notes" required></textarea>
+            <div ng-messages="clientVisitForm.notes.$error" ng-if="clientVisitForm.$dirty">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
+    </div>
+</form>
+<client-side-nav client="cv.Client"></client-side-nav>
+<md-button class="md-accent md-fab my-middle" aria-label="Open Side Nav" ng-click="cv.toggleRight()">
+    <md-tooltip md-direction="left">More Client Info</md-tooltip>
+    <md-icon md-svg-src="content/image/left-arrow.svg"></md-icon>
+</md-button>
+<!--<form name="autocompleteForm">
+    <md-autocomplete required md-input-name="autocomplete" md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.display">
+        <md-item-template>
+            <span md-highlight-text="searchText">{{item.display}}</span>
+        </md-item-template>
+        <div ng-messages="autocompleteForm.autocomplete.$error">
+            <div ng-message="required">This field is required</div>
+        </div>
+    </md-autocomplete>
+</form>-->

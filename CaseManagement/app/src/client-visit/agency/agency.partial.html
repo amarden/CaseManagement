@@ -1,0 +1,19 @@
+﻿<div ng-form="autocompleteForm" name="autoCompleteForm">
+    <md-autocomplete required
+                     md-input-name="autocomplete"
+                     md-selected-item="selectedItem"
+                     md-search-text="ac.searchText"
+                     md-search-text-change="ac.getMatches(ac.searchText)"
+                     md-items="item in ac.filtered"
+                     md-item-text="item.name"
+                     md-selected-item-change="ac.setAgency(ac.searchText, item.agencyId)"
+                     md-floating-label="Agency" 
+                     >
+        <md-item-template>
+            <span md-highlight-text="ac.searchText">{{item.name}}</span>
+        </md-item-template>
+        <div ng-messages="autoCompleteForm.autocomplete.$error">
+            <div ng-message="required">This field is required</div>
+        </div>
+    </md-autocomplete>
+</div>

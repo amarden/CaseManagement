@@ -1,0 +1,74 @@
+﻿<md-dialog aria-label="Client Needs" ng-cloak flex="80">
+    <form name="clientDocumentForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Client Documents</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cd.closeDialog()" ng-disabled="clientDocumentForm.$invalid">
+                    <md-icon md-svg-src="content/image/minus.svg" aria-label="Close dialog"></md-icon>
+                    <!--<md-tooltip md-visible="clientDocumentForm.$invalid">Test</md-tooltip>-->
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content" layout="column" layout-padding>
+                <div ng-repeat="doc in cd.ClientDocuments">
+                    <ng-form name="documentForm">
+                        <div layout="row" flex>
+                            <md-input-container flex="25">
+                                <label>File Type</label>
+                                <md-select name="fileType" ng-model="doc.fileTypeId" aria-label="File Type DropDown" required>
+                                    <md-option ng-repeat="n in cd.fileTypeOptions" value="{{n.fileTypeId}}">{{n.fileType1}}</md-option>
+                                </md-select>
+                                <div ng-messages="documentForm.fileType.$error">
+                                    <div ng-message="required">This field is required</div>
+                                </div>
+                            </md-input-container>
+                            <div layout-padding layout="row" ng-show="doc.clientDocumentId" flex="50">
+                                <div flex="50" class="file-name">{{doc.fileName}}</div>
+                                <div flex="30">Uploaded on: {{doc.uploadDate | date: 'shortDate'}}</div>
+                                <md-button flex class="md-icon-button" ng-click="cd.downloadFile(doc)">
+                                    <md-icon md-svg-src="content/image/download.svg" aria-label="Download File"></md-icon>
+                                    <md-tooltip>Download File</md-tooltip>
+                                </md-button>
+                            </div>
+                            <!--Layout when not yet uploaded-->
+                            <div flex layout="row" ng-show="!doc.clientDocumentId">
+                                <div flex="50" ngf-pattern="'application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf'"
+                                     ngf-drop
+                                     ng-model="doc.file"
+                                     class="drop-box">
+                                    <span ng-show="!doc.file">Drop File Here</span>
+                                    <span ng-show="doc.file">{{doc.file.name}}</span>
+                                </div>
+                                <md-button ng-show="!doc.success && !doc.hide" 
+                                           ng-disabled="documentForm.$invalid || !doc.file"
+                                           class="md-icon-button" 
+                                           ng-click="cd.uploadFile(doc)">
+                                    <md-icon md-svg-src="content/image/upload.svg" aria-label="Upload File"></md-icon>
+                                    <md-tooltip>Upload File</md-tooltip>
+                                </md-button>
+                                <div class="success" ng-show="doc.success">
+                                    Upload has succeeded
+                                </div>
+                                <div class="fail" ng-show="doc.fail">
+                                    Upload has Failed
+                                </div>
+                            </div>
+                            <md-button class="md-icon-button md-secondary" ng-click="cd.removeDocument($index)">
+                                <md-tooltip>Remove Document</md-tooltip>
+                                <md-icon md-svg-src="content/image/ex.svg" aria-label="Remove Document"></md-icon>
+                            </md-button>
+                        </div>
+                    </ng-form>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+    <md-dialog-actions layout="row">
+        <md-button class="md-accent md-fab" aria-label="Add Document" ng-click="cd.addDocument()">
+            <md-tooltip>Add Document</md-tooltip>
+            <md-icon md-svg-src="content/image/plus.svg"></md-icon>
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

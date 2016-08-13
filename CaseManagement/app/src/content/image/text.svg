@@ -1,0 +1,7 @@
+﻿<svg class="icon icon-file-text">
+    <use xlink:href="#icon-file-text"></use>
+<symbol id="icon-file-text" viewBox="0 0 1024 1024">
+    <title>file-text</title>
+    <path class="path1" d="M864 0h-768c-52.8 0-96 43.2-96 96v832c0 52.8 43.2 96 96 96h768c52.8 0 96-43.2 96-96v-832c0-52.8-43.2-96-96-96zM832 896h-704v-768h704v768zM256 448h448v64h-448zM256 576h448v64h-448zM256 704h448v64h-448zM256 320h448v64h-448z"></path>
+</symbol>
+</svg>
