@@ -10,6 +10,7 @@
         Client.resource.getFollowUps(function (data) {
             followUps = data;
             vm.status = "Upcoming";
+            vm.subsetFollowUps();
         });
 
         vm.subsetFollowUps = function () {

@@ -2,7 +2,7 @@
     <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
         <md-button class="md-accent md-fab my-middle-out" aria-label="Close Side Nav" ng-click="sn.toggleRight()">
             <md-tooltip md-direction="left">Close Side Bar</md-tooltip>
-            <md-icon md-svg-src="content/image/right-arrow.svg"></md-icon>
+            <md-icon md-svg-src="dist/content/image/right-arrow.svg"></md-icon>
         </md-button>
         <md-toolbar class="md-theme-indigo">
             <h1 class="md-toolbar-tools">Client Details</h1>
@@ -15,7 +15,7 @@
                 <md-button ng-click="sn.openNeeds($event)" aria-label="Open Client Needs Panel" flex>Needs</md-button>
             </md-list-item>
             <md-list-item flex>
-                <md-button ng-click="sn.openProviders($event)" aria-label="Open Client Providers Panel" flex>Providers</md-button>
+                <md-button ng-click="sn.openReferrals($event)" aria-label="Open Client Referral Panel" flex>Referrals</md-button>
             </md-list-item>
             <md-list-item ng-show="client.clientId" flex>
                 <md-button ng-click="sn.openDocuments($event)" aria-label="Open Client Document Panel" flex>Documents</md-button>

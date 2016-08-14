@@ -20,63 +20,63 @@ angular.module('caseManagement', [
         .state('login', 
         {
             url: "/login",
-            templateUrl: "login/login.html",
+            templateUrl: "dist/login/login.html",
             controller: "LoginCtrl",
             controllerAs: "lc"
         })
         .state('home', 
         {
             url: "/directory",
-            templateUrl: "directory/directory.html",
+            templateUrl: "dist/directory/directory.html",
             controller: 'DirectoryCtrl',
             controllerAs: 'dc'
         })
          .state('administration',
         {
             url: "/admin",
-            templateUrl: "admin/admin.html",
+            templateUrl: "dist/admin/admin.html",
             controller: 'AdminCtrl',
             controllerAs: 'ac'
         })
         .state('directory',
         {
             url: "/directory",
-            templateUrl: "directory/directory.html",
+            templateUrl: "dist/directory/directory.html",
             controller: 'DirectoryCtrl',
             controllerAs: 'dc'
         })
         .state('createClient',
         {
             url: "/client",
-            templateUrl: "client/client.html",
+            templateUrl: "dist/client/client.html",
             controller: 'CreateClientCtrl',
             controllerAs: 'cc'
         })
         .state('client',
         {
             url: "/client/:id",
-            templateUrl: "client/client.html",
+            templateUrl: "dist/client/client.html",
             controller: 'ViewClientCtrl',
             controllerAs: 'cc'
         })
         .state('createClientVisit',
         {
             url: "/client/visit/new/:id",
-            templateUrl: "client-visit/client-visit.html",
+            templateUrl: "dist/client-visit/client-visit.html",
             controller: 'ClientVisitCtrl',
             controllerAs: 'cv'
         })
         .state('clientVisit',
         {
             url: "/client/visit/:id",
-            templateUrl: "client-visit/client-visit.html",
+            templateUrl: "dist/client-visit/client-visit.html",
             controller: 'ViewClientVisitCtrl',
             controllerAs: 'cv'
         })
         .state('clientVisitNotes',
         {
             url: "/client/visit/:id/note",
-            templateUrl: "client-visit/note.html",
+            templateUrl: "dist/client-visit/note.html",
             controller: 'ViewClientVisitCtrl',
             controllerAs: 'cv'
         });

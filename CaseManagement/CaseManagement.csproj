@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -48,12 +48,12 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=4.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EPPlus, Version=4.0.5.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPPlus.4.0.5\lib\net20\EPPlus.dll</HintPath>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -113,8 +113,8 @@
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -213,8 +213,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ClientObjects\ViewClient.cs" />
     <Compile Include="ClientObjects\ViewClientProvider.cs" />
     <Compile Include="ClientObjects\ViewClientVisit.cs" />
+    <Compile Include="ClientObjects\ViewReferral.cs" />
     <Compile Include="ClientObjects\ViewClientVisitReferral.cs" />
     <Compile Include="ClientObjects\FollowUpClient.cs" />
     <Compile Include="Controllers\ClientDocumentsController.cs" />
@@ -226,7 +228,6 @@
     <Compile Include="DataObjects\ClientDocument.cs" />
     <Compile Include="DataObjects\ClientFamily.cs" />
     <Compile Include="DataObjects\ClientNeed.cs" />
-    <Compile Include="DataObjects\ClientProvider.cs" />
     <Compile Include="DataObjects\ClientVisit.cs" />
     <Compile Include="DataObjects\ClientVisitReferral.cs" />
     <Compile Include="DataObjects\ContactType.cs" />
@@ -272,62 +273,24 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\dist\admin\admin-control.html" />
-    <Content Include="app\dist\admin\admin.html" />
-    <Content Include="app\dist\app.min.css" />
-    <Content Include="app\dist\app.min.js" />
-    <Content Include="app\dist\client-info\document\client-document.dialog.html" />
-    <Content Include="app\dist\client-info\family\client-family.dialog.html" />
-    <Content Include="app\dist\client-info\need\client-need.dialog.html" />
-    <Content Include="app\dist\client-info\provider\client-provider.dialog.html" />
-    <Content Include="app\dist\client-info\visit\client-visit.dialog.html" />
-    <Content Include="app\dist\client-sidenav\client-sidenav.html" />
-    <Content Include="app\dist\client-visit\agency\agency.partial.html" />
-    <Content Include="app\dist\client-visit\client-visit.html" />
-    <Content Include="app\dist\client-visit\note.html" />
-    <Content Include="app\dist\client\client.html" />
-    <Content Include="app\dist\content\image\cog.svg" />
-    <Content Include="app\dist\content\image\download.svg" />
-    <Content Include="app\dist\content\image\ex.svg" />
-    <Content Include="app\dist\content\image\forward.svg" />
-    <Content Include="app\dist\content\image\home.svg" />
-    <Content Include="app\dist\content\image\left-arrow.svg" />
-    <Content Include="app\dist\content\image\menu.svg" />
-    <Content Include="app\dist\content\image\minus.svg" />
-    <Content Include="app\dist\content\image\person.svg" />
-    <Content Include="app\dist\content\image\plus.svg" />
-    <Content Include="app\dist\content\image\print.svg" />
-    <Content Include="app\dist\content\image\reply.svg" />
-    <Content Include="app\dist\content\image\right-arrow.svg" />
-    <Content Include="app\dist\content\image\save.svg" />
-    <Content Include="app\dist\content\image\search.svg" />
-    <Content Include="app\dist\content\image\text.svg" />
-    <Content Include="app\dist\content\image\upload.svg" />
-    <Content Include="app\dist\content\image\view.svg" />
-    <Content Include="app\dist\directory\directory.html" />
-    <Content Include="app\dist\index.html" />
-    <Content Include="app\dist\login\login.html" />
-    <Content Include="app\dist\login\register.dialog.html" />
-    <Content Include="app\dist\print.html" />
-    <Content Include="app\dist\vendor.min.js" />
-    <Content Include="app\karma.conf.js" />
+    <Content Include="app\index.html" />
+    <Content Include="gulpfile.js" />
+    <Content Include="karma.conf.js" />
     <Content Include="app\src\admin\admin.controller.js" />
     <Content Include="app\src\admin\admin.html" />
     <Content Include="app\src\client-info\document\client-document.dialog.html" />
     <Content Include="app\src\client-info\document\client-document.controller.js" />
     <Content Include="app\src\client-info\document\client-document.service.js" />
     <Content Include="app\src\client-visit\note.html" />
-    <Content Include="app\src\client-info\provider\client-provider.controller.js" />
-    <Content Include="app\src\client-info\provider\client-provider.dialog.html" />
+    <Content Include="app\src\client-info\referral\client-referral.controller.js" />
+    <Content Include="app\src\client-info\referral\client-referral.dialog.html" />
     <Content Include="app\src\content\image\print.svg" />
     <Content Include="app\src\content\image\text.svg" />
     <Content Include="app\src\content\image\forward.svg" />
     <Content Include="app\src\content\image\reply.svg" />
     <Content Include="app\src\content\image\upload.svg" />
-    <Content Include="app\src\index.html" />
-    <Content Include="app\protractor.conf.js" />
+    <Content Include="protractor.conf.js" />
     <Content Include="app\src\app.js" />
-    <Content Include="app\gulpfile.js" />
     <Content Include="app\src\client-visit\agency\agency.directive.js" />
     <Content Include="app\src\client-visit\agency\agency.partial.html" />
     <Content Include="app\src\client-visit\agency\agency.controller.js" />
@@ -407,9 +370,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\dist\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Views\UploadNonApi\" />
-    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -418,13 +380,13 @@
     <Content Include="app\src\content\style\app.scss" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\.jshintrc" />
+    <Content Include=".jshintrc" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\bower.json" />
+    <Content Include="bower.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\package.json" />
+    <Content Include="package.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\nune.pubxml" />
@@ -461,8 +423,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.1.1\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

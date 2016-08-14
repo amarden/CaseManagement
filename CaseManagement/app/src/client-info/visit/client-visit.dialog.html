@@ -4,30 +4,30 @@
             <h2>Client Visits</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="cv.closeDialog()">
-                <md-icon md-svg-src="content/image/minus.svg" aria-label="Close dialog"></md-icon>
+                <md-icon md-svg-src="dist/content/image/minus.svg" aria-label="Close dialog"></md-icon>
             </md-button>
         </div>
     </md-toolbar>
     <md-dialog-content>
         <div class="md-dialog-content">
-            <md-list>
-                <md-list-item layout-align="center center" ng-repeat="visit in cv.ClientVisits">
-                    <div class="md-list-item-text">
-                        {{visit.dateVisit | date:'MM/dd/yyyy'}} - {{visit.Responder.responderName}}
-                    </div>
-                    <md-button class="md-icon-button"
-                                aria-label="View Visit"
-                                ng-click="cv.navToVisit(visit.clientVisitId)">
-                        <md-icon md-svg-src="content/image/view.svg"></md-icon>
-                    </md-button>
-                </md-list-item>
-            </md-list>
+            <md-content>
+                <md-list flex>
+                    <md-list-item class="md-3-line" ng-repeat="item in cv.ClientVisits" ng-click="cv.navToVisit(item.clientVisitId)">
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{ item.dateVisit | date:'MM/dd/yyyy' }}</h3>
+                            <h4>{{ item.Responder.responderName}}</h4>
+                            <p>{{ item.clientVisitDate | date:'MM/dd/yyyy' }}</p>
+                        </div>
+                        <md-divider></md-divider>
+                    </md-list-item>
+                </md-list>
+            </md-content>
         </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
         <md-button class="md-accent md-fab" aria-label="Add Visit" ng-click="cv.addVisit()">
             <md-tooltip>Add Visit</md-tooltip>
-            <md-icon md-svg-src="content/image/plus.svg"></md-icon>
+            <md-icon md-svg-src="dist/content/image/plus.svg"></md-icon>
         </md-button>
     </md-dialog-actions>
 </md-dialog>

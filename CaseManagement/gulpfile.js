@@ -13,13 +13,13 @@ var sourcemaps = require('gulp-sourcemaps');
 // *******************************************
 
 gulp.task('buildApp', function () {
-    return gulp.src(['src/app.js', 'src/**/*.js'])
+    return gulp.src(['app/src/app.js', 'app/src/**/*.js'])
       .pipe(sourcemaps.init())
       .pipe(ngAnnotate())
       .pipe(concat('app.min.js'))
       //.pipe(uglify())
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest('app/dist'));
 });
 
 gulp.task('buildVendor', function () {
@@ -31,7 +31,7 @@ gulp.task('buildVendor', function () {
         'bower_components/ng-file-upload/ng-file-upload.min.js'])
 
       .pipe(concat('vendor.min.js'))
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest('app/dist'));
 });
 
 gulp.task('buildCSS', function () {
@@ -39,7 +39,7 @@ gulp.task('buildCSS', function () {
        cssStream;
 
     //compile sass
-    sassStream = gulp.src('src/content/style/app.scss')
+    sassStream = gulp.src('app/src/content/style/app.scss')
         .pipe(sass({
             errLogToConsole: true
         }));
@@ -51,40 +51,28 @@ gulp.task('buildCSS', function () {
     return merge(cssStream, sassStream)
         .pipe(concat('app.min.css'))
         .pipe(minifycss())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('app/dist'));
 });
 
 gulp.task('moveHTML', function () {
-    return gulp.src(['src/**/*.html', 'src/**/*.json', 'src/**/*.svg'])
-      .pipe(gulp.dest('dist'));
+    return gulp.src(['app/src/**/*.html', 'app/src/**/*.json', 'app/src/**/*.svg'])
+      .pipe(gulp.dest('app/dist'));
 });
 
 gulp.task('build', ['buildApp', 'buildVendor', 'buildCSS', 'moveHTML']);
 
-// **********************************
-
-gulp.task('karma', function (done) {
-    new Server({
-        configFile: __dirname + '/karma.conf.js',
-        singleRun: true
-    }, done).start();
-});
-
 gulp.task('jshint', function () {
-    return gulp.src(['src/**/*.js', 'test/unit/**/**.js'])
+    return gulp.src(['app/src/**/*.js', 'app/test/unit/**/**.js'])
       .pipe(jshint())
       .pipe(jshint.reporter('jshint-stylish'));
 });
-
-gulp.task('test', ['karma', 'jshint']);
-
 // ***************************************
 
 gulp.task('watch', function () {
-    gulp.watch('src/**/*.js', ['buildApp', 'jshint']);
-    gulp.watch('test/**/*.js', ['jshint']);
-    gulp.watch('src/content/style/*.scss', ['buildCSS']);
-    gulp.watch('src/**/*.html', ['moveHTML']);
+    gulp.watch('app/src/**/*.js', ['buildApp', 'jshint']);
+    gulp.watch('app/test/**/*.js', ['jshint']);
+    gulp.watch('app/src/content/style/*.scss', ['buildCSS']);
+    gulp.watch('app/src/**/*.html', ['moveHTML']);
 });
 
 // *******************************************

@@ -43,9 +43,10 @@
             var v = ClientVisit.resource.save(vm.ClientVisit);
             var message;
             $q.all([c.$promise, v.$promise])
-                .then(function () {
+                .then(function (data) {
                     message = "Changes were succesfully changed";
                     $scope.clientVisitForm.$dirty = false;
+                    $state.go('clientVisit', { id: data[1].clientVisitId });
                 }).catch(function (response) {
                     if (response.status === 400) {
                         message = "Please fill in agency for each referral";

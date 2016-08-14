@@ -2,9 +2,9 @@
            ng-click="dc.createClient()" 
            style="position:fixed">
     <md-tooltip>Add New Client</md-tooltip>
-    <md-icon md-svg-src="content/image/plus.svg"></md-icon>
+    <md-icon md-svg-src="dist/content/image/plus.svg"></md-icon>
 </md-button>
-<div flex layout="row" layout-padding>
+<div flex layout="column" layout-padding>
     <div class="directory" flex>
         <md-subheader>Client Directory</md-subheader>
         <md-autocomplete md-selected-item="selectedItem" md-search-text="dc.searchText"
@@ -13,6 +13,7 @@
                          md-item-text="item.firstName"
                          md-menu-class="autocomplete-custom-template"
                          md-selected-item-change="dc.nav(item.clientId)"
+                         md-no-cache="true"
                          md-floating-label="Look Up Client">
             <md-item-template>
                 <span class="item-title">
@@ -21,7 +22,7 @@
                 </span>
                 <span class="item-metadata">
                     <span class="item-metastat">
-                        <strong>{{item.dob}}</strong>
+                        <strong>{{item.dob | date:'MM/dd/yyyy'}}</strong>
                     </span>
                     <span class="item-metastat">
                         <strong>{{item.gender}}</strong>
@@ -43,18 +44,25 @@
             <md-radio-button value="Overdue"> Overdue </md-radio-button>
         </md-radio-group>
         <md-subheader>{{dc.status}} Follow Ups</md-subheader>
-        <md-list>
-            <md-list-item ng-repeat="fu in dc.followUps">
-                {{fu.firstName}} - {{fu.dateFollowUp | date:'MM/dd/yyyy'}} 
-                <md-button class="md-icon-button" ng-click="dc.nav(fu.clientId)">
-                    <md-tooltip>Go To Client Page</md-tooltip>
-                    <md-icon md-svg-src="content/image/person.svg"></md-icon>
-                </md-button>
-                <md-button class="md-icon-button" ng-click="dc.navVisit(fu.clientVisitId)">
-                    <md-tooltip>Go To Visit Page that Led to Follow up</md-tooltip>
-                    <md-icon md-svg-src="content/image/text.svg"></md-icon>
-                </md-button>
-            </md-list-item>
-        </md-list>
+        <md-content>
+            <md-list>
+                <md-list-item class="md-3-line" ng-repeat="fu in dc.followUps">
+                    <div class="md-list-item-text">
+                        <h3>{{ fu.firstName }}</h3>
+                        <h4>{{ fu.dateFollowUp | date:'MM/dd/yyyy'}} </h4>
+                        <p class="md-secondary">
+                            <md-button class="md-icon-button" ng-click="dc.nav(fu.clientId)">
+                                <md-tooltip>Go To Client Page</md-tooltip>
+                                <md-icon md-svg-src="dist/content/image/person.svg"></md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" ng-click="dc.navVisit(fu.clientVisitId)">
+                                <md-tooltip>Go To Visit Page that Led to Follow up</md-tooltip>
+                                <md-icon md-svg-src="dist/content/image/text.svg"></md-icon>
+                            </md-button>
+                        </p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
     </div>
 </div>

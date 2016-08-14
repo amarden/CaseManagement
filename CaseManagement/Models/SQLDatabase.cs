@@ -20,7 +20,6 @@ namespace CaseManagement.Models.SQL
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<ClientFamily> ClientFamilies { get; set; }
         public virtual DbSet<ClientNeed> ClientNeeds { get; set; }
-        public virtual DbSet<ClientProvider> ClientProviders { get; set; }
         public virtual DbSet<ClientDocument> ClientDocuments { get; set; }
         public virtual DbSet<ClientVisit> ClientVisits { get; set; }
         public virtual DbSet<ClientVisitReferral> ClientVisitReferrals { get; set; }
@@ -50,11 +49,6 @@ namespace CaseManagement.Models.SQL
             modelBuilder.Configurations.Add(new AppUserConfiguration());
 
             modelBuilder.Entity<Agency>()
-                .HasMany(e => e.ClientProviders)
-                .WithRequired(e => e.Agency)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Agency>()
                 .HasMany(e => e.ClientVisitReferrals)
                 .WithRequired(e => e.Agency)
                 .HasForeignKey(e => e.agencyId)
@@ -64,11 +58,6 @@ namespace CaseManagement.Models.SQL
                .HasMany(e => e.ClientDocuments)
                .WithRequired(e => e.Client)
                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Client>()
-                .HasMany(e => e.ClientProviders)
-                .WithRequired(e => e.Client)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ClientFamily>()
                 .Property(e => e.age)
@@ -110,11 +99,6 @@ namespace CaseManagement.Models.SQL
 
             modelBuilder.Entity<Need>()
                 .HasMany(e => e.ClientNeeds)
-                .WithRequired(e => e.Need)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Need>()
-                .HasMany(e => e.ClientProviders)
                 .WithRequired(e => e.Need)
                 .WillCascadeOnDelete(false);
 

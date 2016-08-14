@@ -20,6 +20,11 @@ namespace CaseManagement.Controllers
     public class ClientVisitsController : ApiController
     {
         private SQLDatabase db = new SQLDatabase();
+        MapperConfiguration config = new MapperConfiguration(cfg => {
+            cfg.CreateMap<ViewClientVisit, ClientVisit>();
+            cfg.CreateMap<ViewClientVisitReferral, ClientVisitReferral>();
+        });
+
 
         // GET: api/ClientVisits
         public IQueryable<ClientVisit> GetClientVisits()
@@ -47,28 +52,23 @@ namespace CaseManagement.Controllers
             CheckAgency ca = new CheckAgency(clientVisit.clientId);
             try
             {
-                clientVisit.ClientVisitReferrals = ca.ProcessReferrals(clientVisit.viewReferrals);
+                clientVisit.viewReferrals = ca.ProcessReferrals(clientVisit.viewReferrals);
             }
             catch
             {
                 return StatusCode(HttpStatusCode.BadRequest);
             }
 
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-
-            Mapper.CreateMap<ViewClientVisit, ClientVisit>();
-            var cv = new ClientVisit();
-            Mapper.Map(clientVisit, cv);
-            cv.dateEdited = DateTime.Now;
-
-            if (id != clientVisit.clientVisitId)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
+            var cv = new ClientVisit();
+            var mapper = config.CreateMapper();
+            mapper.Map(clientVisit, cv);
+            mapper.Map(clientVisit.viewReferrals, cv.ClientVisitReferrals);
+            cv.dateEdited = DateTime.Now;
             db.UpdateGraph(cv, map => map
                 .OwnedCollection(x=>x.ClientVisitReferrals));
 
@@ -87,6 +87,10 @@ namespace CaseManagement.Controllers
                     throw;
                 }
             }
+            catch (Exception e)
+            {
+                throw e;
+            }
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -101,10 +105,10 @@ namespace CaseManagement.Controllers
             }
 
             CheckAgency ca = new CheckAgency(clientVisit.clientId);
-            clientVisit.ClientVisitReferrals = ca.ProcessReferrals(clientVisit.viewReferrals);
-            Mapper.CreateMap<ViewClientVisit, ClientVisit>();
+            clientVisit.viewReferrals = ca.ProcessReferrals(clientVisit.viewReferrals);
             var cv = new ClientVisit();
-            Mapper.Map(clientVisit, cv);
+            var mapper = config.CreateMapper();
+            mapper.Map(clientVisit, cv);
             cv.dateCreated = DateTime.Now;
             cv.dateEdited = DateTime.Now;
             db.ClientVisits.Add(cv);

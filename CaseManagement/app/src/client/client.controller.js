@@ -10,7 +10,6 @@
         vm.client.ClientCommunities = [];
         vm.client.ClientFamilies = [];
         vm.client.ClientNeeds = [];
-        vm.client.ClientProviders = [];
         vm.client.ClientVisits = [];
 
         vm.clientExists = function () {
@@ -32,7 +31,7 @@
             Client.resource.save(vm.client, function (data) {
                 $scope.clientForm.$dirty = false;
                 responseMessage = 'Changes were succesfully changed';
-                console.log(data);
+                $state.go('client', { id: data.clientId });
             }, function () {
                 responseMessage = 'There was an error saving your changes';
             }).$promise.finally(function () {

@@ -15,7 +15,6 @@ namespace CaseManagement.DataObjects
             ClientDocuments = new HashSet<ClientDocument>();
             ClientFamilies = new HashSet<ClientFamily>();
             ClientNeeds = new HashSet<ClientNeed>();
-            ClientProviders = new HashSet<ClientProvider>();
             ClientVisits = new HashSet<ClientVisit>();
         }
 
@@ -96,9 +95,6 @@ namespace CaseManagement.DataObjects
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientNeed> ClientNeeds { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientProvider> ClientProviders { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientVisit> ClientVisits { get; set; }

@@ -38,7 +38,5 @@ namespace CaseManagement.ClientObjects
 
         public DateTime dateEdited { get; set; }
         public List<ViewClientVisitReferral> viewReferrals { get; set; }
-        public virtual List<ClientVisitReferral> ClientVisitReferrals { get; set; }
-
     }
 }

@@ -15,6 +15,7 @@ using AutoMapper.QueryableExtensions;
 using RefactorThis.GraphDiff;
 using CaseManagement.Models.SQL;
 using CaseManagement.DataObjects;
+using CaseManagement.ClientObjects;
 
 namespace CaseManagement.Controllers
 {
@@ -35,20 +36,32 @@ namespace CaseManagement.Controllers
 
         // GET: api/Clients
         public IQueryable<ViewListClient> GetClients()
-        {
-            Mapper.CreateMap<Client, ViewListClient>()
-                .ForMember(dest => dest.gender, opt => opt.MapFrom(src=> src.Gender.genderName));
+        { 
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Client, ViewListClient>()
+                    .ForMember(dest => dest.gender, opt => opt.MapFrom(src => src.Gender.genderName)); ;
+            });
 
-            var result = db.Clients.ProjectTo<ViewListClient>();
-
-            return db.Clients.ProjectTo<ViewListClient>();
+            return db.Clients.ProjectTo<ViewListClient>(config);
         }
 
         // GET: api/Clients/5
-        [ResponseType(typeof(Client))]
-        public async Task<IHttpActionResult> GetClient(int id)
+        [ResponseType(typeof(ViewClient))]
+        public IHttpActionResult GetClient(int id)
         {
-            Client client = await db.Clients.FindAsync(id);
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<Client, ViewClient>()
+                    .ForMember(dest => dest.ClientVisitReferrals, 
+                        opt => opt.MapFrom(src => src.ClientVisits.SelectMany(x=>x.ClientVisitReferrals).ToList()));
+
+                cfg.CreateMap<ClientVisitReferral, ViewReferral>()
+                    .ForMember(dest => dest.agency, opt => opt.MapFrom(src => src.Agency.name))
+                    .ForMember(dest => dest.referralType, opt => opt.MapFrom(src => src.ReferralType.referralTypeName))
+                    .ForMember(dest => dest.clientVisitDate, opt => opt.MapFrom(src => src.ClientVisit.dateVisit));
+            });
+
+            ViewClient client = db.Clients.Where(x=>x.clientId == id).ProjectTo<ViewClient>(config).SingleOrDefault();
+
             if (client == null)
             {
                 return NotFound();
@@ -74,8 +87,7 @@ namespace CaseManagement.Controllers
 
             db.UpdateGraph(client, map => map
                 .OwnedCollection(p => p.ClientNeeds)
-                .OwnedCollection(p=> p.ClientFamilies)
-                .OwnedCollection(p=> p.ClientProviders));
+                .OwnedCollection(p => p.ClientFamilies));
 
             try
             {

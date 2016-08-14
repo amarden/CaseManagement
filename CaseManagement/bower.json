@@ -17,18 +17,17 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.5.0",
-    "angular-animate": "^1.5.0",
-    "angular-messages": "^1.5.0",
-    "angular-aria": "^1.5.0",
-    "angular-ui-router": "ui-router#~0.2.15",
-    "angular-resource": "^1.5.0",
-    "angular-ui-mask": "~1.6.7",
-    "angular-mocks": "^1.5.0",
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-messages": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "angular-resource": "^1.5.8",
+    "angular-mocks": "^1.5.8",
     "jquery": "^2.2.0",
-    "angular-material": "^1.0.6",
-    "moment": "^2.12.0",
+    "angular-material": "^1.1.0-RC.5",
+    "moment": "^2.14.1",
     "ng-file-upload": "^12.0.4",
-    "angular-sanitize": "^1.5.5"
+    "angular-sanitize": "^1.5.8"
   }
 }

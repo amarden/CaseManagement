@@ -21,11 +21,10 @@ namespace CaseManagement.DataObjects
         [StringLength(255)]
         public string contactName { get; set; }
 
-        public bool isProvider { get; set; }
+        [StringLength(50)]
+        public string contactPhone { get; set; }
 
         public int? needId { get; set; }
-
-        public int? associatedProviderId { get; set; }
 
         public virtual Agency Agency { get; set; }
 

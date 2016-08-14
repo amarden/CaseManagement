@@ -14,7 +14,6 @@ namespace CaseManagement.DataObjects
         public Need()
         {
             ClientNeeds = new HashSet<ClientNeed>();
-            ClientProviders = new HashSet<ClientProvider>();
         }
 
         public int needId { get; set; }
@@ -26,9 +25,5 @@ namespace CaseManagement.DataObjects
         [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientNeed> ClientNeeds { get; set; }
-
-        [JsonIgnore]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientProvider> ClientProviders { get; set; }
     }
 }

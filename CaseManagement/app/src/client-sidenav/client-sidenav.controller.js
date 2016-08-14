@@ -13,7 +13,7 @@
                 preserveScope: true,
                 controller: "ClientDocumentCtrl",
                 controllerAs: 'cd',
-                templateUrl: 'client-info/document/client-document.dialog.html',
+                templateUrl: 'dist/client-info/document/client-document.dialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: false,
@@ -28,7 +28,7 @@
                 preserveScope: true,
                 controller: "ClientNeedCtrl",
                 controllerAs: 'cn',
-                templateUrl: 'client-info/need/client-need.dialog.html',
+                templateUrl: 'dist/client-info/need/client-need.dialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: false,
@@ -36,20 +36,19 @@
             });
         };
 
-        vm.openProviders = function (ev) {
+        vm.openReferrals = function (ev) {
             $mdDialog.show({
                 scope: $scope,
                 preserveScope: true,
-                controller: "ClientProviderCtrl",
+                controller: "ClientReferralCtrl",
                 controllerAs: 'cp',
-                templateUrl: 'client-info/provider/client-provider.dialog.html',
+                templateUrl: 'dist/client-info/referral/client-referral.dialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: false,
                 usefullscreen: true,
             });
         };
-
 
         vm.openFamily = function (ev) {
             $mdDialog.show({
@@ -57,7 +56,7 @@
                 preserveScope: true,
                 controller: "ClientFamilyCtrl",
                 controllerAs: 'cf',
-                templateUrl: 'client-info/family/client-family.dialog.html',
+                templateUrl: 'dist/client-info/family/client-family.dialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: false,
@@ -71,7 +70,7 @@
                 preserveScope: true,
                 controller: "ClientVisitDirCtrl",
                 controllerAs: 'cv',
-                templateUrl: 'client-info/visit/client-visit.dialog.html',
+                templateUrl: 'dist/client-info/visit/client-visit.dialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: false,

@@ -13,7 +13,6 @@ namespace CaseManagement.DataObjects
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Agency()
         {
-            ClientProviders = new HashSet<ClientProvider>();
             ClientVisitReferrals = new HashSet<ClientVisitReferral>();
         }
 
@@ -22,10 +21,6 @@ namespace CaseManagement.DataObjects
         [Required]
         [StringLength(255)]
         public string name { get; set; }
-
-        [JsonIgnore]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClientProvider> ClientProviders { get; set; }
 
         [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

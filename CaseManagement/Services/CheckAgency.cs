@@ -27,18 +27,13 @@ namespace CaseManagement.Services
             }
         }
 
-        public List<ClientVisitReferral> ProcessReferrals(List<ViewClientVisitReferral> agencies)
+        public List<ViewClientVisitReferral> ProcessReferrals(List<ViewClientVisitReferral> agencies)
         {
-            Mapper.CreateMap<ViewClientVisitReferral, ClientVisitReferral>();
             foreach (var agency in agencies)
             {
                 try
                 {
                     agency.agencyId = grabAgencyId(agency.agencyName);
-                    if (agency.isProvider && agency.associatedProviderId == null)
-                    {
-                        agency.associatedProviderId = CreateProvider(agency);
-                    }
                 }
                 catch
                 {
@@ -46,33 +41,7 @@ namespace CaseManagement.Services
                 }
      
             }
-            return agencies.AsQueryable().ProjectTo<ClientVisitReferral>().ToList();
-        }
-
-        private int CreateProvider(ViewClientVisitReferral agency)
-        {
-            ClientProvider cp = new ClientProvider();
-            cp.agencyId = agency.agencyId;
-            cp.dateCreated = DateTime.Now;
-            cp.needId = (int)agency.needId;
-            cp.contactPerson = agency.contactName;
-            cp.clientId = this.clientId;
-            using (var db = new SQLDatabase())
-            {
-                db.ClientProviders.Add(cp);
-                db.SaveChanges();
-            }
-            return cp.clientProviderId;
-        }
-
-        public List<ClientProvider> ProcessProviders(List<ViewClientProvider> agencies)
-        {
-            Mapper.CreateMap<ViewClientProvider, ClientProvider>();
-            foreach (var agency in agencies)
-            {
-                agency.agencyId = grabAgencyId(agency.agencyName);
-            }
-            return agencies.AsQueryable().ProjectTo<ClientProvider>().ToList();
+            return agencies.ToList();
         }
 
         public int grabAgencyId (string agencyName)

@@ -18,8 +18,7 @@ namespace CaseManagement.ClientObjects
         public int agencyId { get; set; }
 
         public string contactName { get; set; }
-
-        public bool isProvider { get; set; }
+        public string contactPhone { get; set; }
 
         public int? needId { get; set; }
 
@@ -29,8 +28,5 @@ namespace CaseManagement.ClientObjects
 
         public virtual ReferralType ReferralType { get; set; }
         public string agencyName { get; set; }
-        public int? associatedProviderId { get; set; }
-
-
     }
 }
