@@ -17,11 +17,12 @@
     });
 
     it('should navigate to directory when going home', function () {
-        httpBackEnd.when('GET', 'login/login.html')
+        httpBackEnd.when('GET', 'dist/login/login.html')
             .respond(200);
 
-        httpBackEnd.when('GET', 'directory/directory.html')
+        httpBackEnd.when('GET', 'dist/directory/directory.html')
             .respond(200);
+
         mainCtrl.goHome();
         scope.$digest();
         expect(state.go).toHaveBeenCalled();

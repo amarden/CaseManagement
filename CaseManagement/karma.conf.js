@@ -24,20 +24,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      //'bower_components/jquery/dist/jquery.min.js',
-      //'bower_components/angular/angular.js',
-      //'bower_components/angular-animate/angular-animate.js',
-      //'bower_components/angular-aria/angular-aria.js',
-      //'bower_components/angular-material/angular-material.js',
-      //'bower_components/angular-messages/angular-messages.js',
-      //'bower_components/angular-resource/angular-resource.js',
-      //'bower_components/angular-ui-router/release/angular-ui-router.js',
-      'dist/vendor.min.js',
+      'app/dist/vendor.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'src/**/*.html',
-      'src/app.js',
-      'src/**/*.js',
-      'test/unit/**/*.js',
+      'app/src/**/*.html',
+      'app/src/app.js',
+      'app/src/**/*.js',
+      'app/test/unit/**/*.js',
       //'test/unit/client/ClientCtrlSpec.js',
       //'test/unit/TestHelper.js'
     ],
@@ -51,14 +43,14 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        'src/**/*.html': ['ng-html2js'],
-        'src/**/*.js': ['coverage'],
+        'app/src/**/*.html': ['ng-html2js'],
+        'app/src/**/*.js': ['coverage'],
 
     },
 
     ngHtml2JsPreprocessor: {
         moduleName: 'templates',
-        stripPrefix: 'src/'
+        stripPrefix: 'app/src/'
     },
 
 

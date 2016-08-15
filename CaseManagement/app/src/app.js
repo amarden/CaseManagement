@@ -81,7 +81,7 @@ angular.module('caseManagement', [
             controllerAs: 'cv'
         });
 })
-.run(function ($rootScope, $location, $state, Login) {
+.run(function ($rootScope, $state, Login) {
     $rootScope.$on('$stateChangeStart', function (e, toState) {
 
         var isLogin = toState.name === "login";

@@ -11,6 +11,7 @@
         vm.client.ClientFamilies = [];
         vm.client.ClientNeeds = [];
         vm.client.ClientVisits = [];
+        vm.client.ClientVisitReferrals = [];
 
         vm.clientExists = function () {
             return false; 

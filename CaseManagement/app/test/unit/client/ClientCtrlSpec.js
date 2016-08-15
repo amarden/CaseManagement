@@ -1,11 +1,12 @@
 ﻿describe('Create Client Controller', function () {
-    var clientCtrl, scope, httpBackend, mdSidenav, toast, $mdToast;
+    var clientCtrl, scope, httpBackend, mdSidenav, toast, $mdToast, rootScope;
 
     beforeEach(function () {
         module('caseManagement');
 
         mdSidenav = {};
         mdSidenav.toggle = jasmine.createSpy();
+
         module(function ($provide) {
             $provide.factory('$mdSidenav', function () {
                 return function () {
@@ -14,7 +15,16 @@
             });
         });
 
+        module(function ($provide) {
+            $provide.factory('Login', function () {
+                var obj = {};
+                obj.isAuthenticated = function () { return true; };
+                return obj;
+            });
+        });
+
         inject(function ($controller, $rootScope, $injector) {
+            rootScope = $rootScope;
             scope = $rootScope.$new();
             scope.mc = {};
             scope.clientForm = {};
@@ -25,7 +35,10 @@
             toast = $mdToast.simple();
         });
 
-        spyOn(scope, '$on').and.callThrough();
+        httpBackend.when("GET", "dist/client/client.html")
+            .respond(200);
+
+        spyOn(scope, '$on').and.callFake(function () { });
 
         spyOn($mdToast, "show").and.callFake(function () {
             return toast;
@@ -60,7 +73,7 @@
         expect(clientCtrl.client.ClientCommunities.length).toBe(0);
         expect(clientCtrl.client.ClientFamilies.length).toBe(0);
         expect(clientCtrl.client.ClientNeeds.length).toBe(0);
-        expect(clientCtrl.client.ClientProviders.length).toBe(0);
+        expect(clientCtrl.client.ClientVisitReferrals.length).toBe(0);
         expect(clientCtrl.client.ClientVisits.length).toBe(0);
     });
 

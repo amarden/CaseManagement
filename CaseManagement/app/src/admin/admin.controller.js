@@ -48,7 +48,7 @@
             resource.remove({ id: item[idKey] },
                 function () {
                     vm.getList(vm.dropDown.id);
-                }, function (error) {
+                }, function () {
                     $mdToast.show(
                         $mdToast.simple()
                          .textContent("Unable to delete item because it is currently assigned to clients")
