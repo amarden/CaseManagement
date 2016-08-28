@@ -273,87 +273,104 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\dist\admin\admin.html" />
+    <Content Include="app\dist\app.min.css" />
+    <Content Include="app\dist\app.min.js" />
+    <Content Include="app\dist\client-info\document\client-document.dialog.html" />
+    <Content Include="app\dist\client-info\family\client-family.dialog.html" />
+    <Content Include="app\dist\client-info\need\client-need.dialog.html" />
+    <Content Include="app\dist\client-info\referral\client-referral.dialog.html" />
+    <Content Include="app\dist\client-info\visit\client-visit.dialog.html" />
+    <Content Include="app\dist\client-sidenav\client-sidenav.html" />
+    <Content Include="app\dist\client-visit\agency\agency.partial.html" />
+    <Content Include="app\dist\client-visit\client-visit.html" />
+    <Content Include="app\dist\client-visit\note.html" />
+    <Content Include="app\dist\client\client.html" />
+    <Content Include="app\dist\content\image\cog.svg" />
+    <Content Include="app\dist\content\image\download.svg" />
+    <Content Include="app\dist\content\image\ex.svg" />
+    <Content Include="app\dist\content\image\forward.svg" />
+    <Content Include="app\dist\content\image\home.svg" />
+    <Content Include="app\dist\content\image\left-arrow.svg" />
+    <Content Include="app\dist\content\image\menu.svg" />
+    <Content Include="app\dist\content\image\minus.svg" />
+    <Content Include="app\dist\content\image\person.svg" />
+    <Content Include="app\dist\content\image\plus.svg" />
+    <Content Include="app\dist\content\image\print.svg" />
+    <Content Include="app\dist\content\image\reply.svg" />
+    <Content Include="app\dist\content\image\right-arrow.svg" />
+    <Content Include="app\dist\content\image\save.svg" />
+    <Content Include="app\dist\content\image\search.svg" />
+    <Content Include="app\dist\content\image\text.svg" />
+    <Content Include="app\dist\content\image\upload.svg" />
+    <Content Include="app\dist\content\image\view.svg" />
+    <Content Include="app\dist\directory\directory.html" />
+    <Content Include="app\dist\login\login.html" />
+    <Content Include="app\dist\login\register.dialog.html" />
+    <Content Include="app\dist\print.html" />
+    <Content Include="app\dist\vendor.min.js" />
     <Content Include="app\index.html" />
-    <Content Include="gulpfile.js" />
-    <Content Include="karma.conf.js" />
     <Content Include="app\src\admin\admin.controller.js" />
     <Content Include="app\src\admin\admin.html" />
-    <Content Include="app\src\client-info\document\client-document.dialog.html" />
+    <Content Include="app\src\app.js" />
     <Content Include="app\src\client-info\document\client-document.controller.js" />
+    <Content Include="app\src\client-info\document\client-document.dialog.html" />
     <Content Include="app\src\client-info\document\client-document.service.js" />
-    <Content Include="app\src\client-visit\note.html" />
+    <Content Include="app\src\client-info\family\client-family.controller.js" />
+    <Content Include="app\src\client-info\family\client-family.dialog.html" />
+    <Content Include="app\src\client-info\need\client-need.controller.js" />
+    <Content Include="app\src\client-info\need\client-need.dialog.html" />
     <Content Include="app\src\client-info\referral\client-referral.controller.js" />
     <Content Include="app\src\client-info\referral\client-referral.dialog.html" />
-    <Content Include="app\src\content\image\print.svg" />
-    <Content Include="app\src\content\image\text.svg" />
-    <Content Include="app\src\content\image\forward.svg" />
-    <Content Include="app\src\content\image\reply.svg" />
-    <Content Include="app\src\content\image\upload.svg" />
-    <Content Include="protractor.conf.js" />
-    <Content Include="app\src\app.js" />
-    <Content Include="app\src\client-visit\agency\agency.directive.js" />
-    <Content Include="app\src\client-visit\agency\agency.partial.html" />
-    <Content Include="app\src\client-visit\agency\agency.controller.js" />
-    <Content Include="app\src\client-visit\client-visit.html" />
-    <Content Include="app\src\client-visit\view-client-visit.controller.js" />
-    <Content Include="app\src\client-visit\client-visit.service.js" />
-    <Content Include="app\src\client-sidenav\client-sidenav.controller.js" />
-    <Content Include="app\src\client-info\family\client-family.dialog.html" />
-    <Content Include="app\src\client-info\family\client-family.controller.js" />
-    <Content Include="app\src\client-info\need\client-need.controller.js" />
     <Content Include="app\src\client-info\visit\client-visit.controller.js" />
     <Content Include="app\src\client-info\visit\client-visit.dialog.html" />
-    <Content Include="app\src\client-info\need\client-need.dialog.html" />
-    <Content Include="app\src\client\client.controller.js" />
-    <Content Include="app\src\client\client.html" />
+    <Content Include="app\src\client-sidenav\client-sidenav.controller.js" />
     <Content Include="app\src\client-sidenav\client-sidenav.directive.js" />
     <Content Include="app\src\client-sidenav\client-sidenav.html" />
+    <Content Include="app\src\client-visit\agency\agency.controller.js" />
+    <Content Include="app\src\client-visit\agency\agency.directive.js" />
+    <Content Include="app\src\client-visit\agency\agency.partial.html" />
+    <Content Include="app\src\client-visit\client-visit.controller.js" />
+    <Content Include="app\src\client-visit\client-visit.html" />
+    <Content Include="app\src\client-visit\client-visit.service.js" />
+    <Content Include="app\src\client-visit\note.html" />
+    <Content Include="app\src\client-visit\view-client-visit.controller.js" />
+    <Content Include="app\src\client\client.controller.js" />
+    <Content Include="app\src\client\client.html" />
+    <Content Include="app\src\client\client.service.js" />
     <Content Include="app\src\client\view-client.controller.js" />
+    <Content Include="app\src\content\image\cog.svg" />
     <Content Include="app\src\content\image\download.svg" />
     <Content Include="app\src\content\image\ex.svg" />
+    <Content Include="app\src\content\image\forward.svg" />
     <Content Include="app\src\content\image\home.svg" />
     <Content Include="app\src\content\image\left-arrow.svg" />
-    <Content Include="app\src\client\client.service.js" />
     <Content Include="app\src\content\image\menu.svg" />
     <Content Include="app\src\content\image\minus.svg" />
-    <Content Include="app\src\content\image\plus.svg" />
     <Content Include="app\src\content\image\person.svg" />
+    <Content Include="app\src\content\image\plus.svg" />
+    <Content Include="app\src\content\image\print.svg" />
+    <Content Include="app\src\content\image\reply.svg" />
     <Content Include="app\src\content\image\right-arrow.svg" />
     <Content Include="app\src\content\image\save.svg" />
     <Content Include="app\src\content\image\search.svg" />
+    <Content Include="app\src\content\image\text.svg" />
+    <Content Include="app\src\content\image\upload.svg" />
     <Content Include="app\src\content\image\view.svg" />
     <Content Include="app\src\core\drop-down\resources.service.js" />
     <Content Include="app\src\core\dropdown.service.js" />
     <Content Include="app\src\core\main.controller.js" />
     <Content Include="app\src\directory\directory.controller.js" />
     <Content Include="app\src\directory\directory.html" />
-    <Content Include="app\src\client-visit\client-visit.controller.js" />
     <Content Include="app\src\login\login.controller.js" />
     <Content Include="app\src\login\login.html" />
     <Content Include="app\src\login\login.service.js" />
     <Content Include="app\src\login\register.dialog.html" />
     <Content Include="app\src\login\registration.controller.js" />
     <Content Include="app\src\print.html" />
-    <Content Include="app\test\e2e\GoToClientVisitSpec.js" />
-    <Content Include="app\test\unit\admin\AdminCtrlSpec.js" />
-    <Content Include="app\test\unit\client-visit\Agency\AgencyCtrlSpec.js" />
-    <Content Include="app\test\unit\client-visit\ClientVisitCtrlSpec.js" />
-    <Content Include="app\test\unit\client-visit\ViewClientVisitCtrlSpec.js" />
-    <Content Include="app\test\unit\client-visit\ClientVisitServiceSpec.js" />
-    <Content Include="app\test\unit\client-info\ClientContactSpec.js" />
-    <Content Include="app\test\unit\client-info\ClientProviderSpec.js" />
-    <Content Include="app\test\unit\client-info\ClientNeedSpec.js" />
-    <Content Include="app\test\unit\client-info\ClientFamilySpec.js" />
-    <Content Include="app\test\unit\client\ClientCtrlSpec.js" />
-    <Content Include="app\test\unit\client\ClientServiceSpec.js" />
-    <Content Include="app\test\unit\client\sidenav\ClientSideNavCtrlSpec.js" />
-    <Content Include="app\test\unit\client\ViewClientCtrlSpec.js" />
-    <Content Include="app\test\unit\core\MainCtrlSpec.js" />
-    <Content Include="app\test\unit\directory\DirectoryCtrlSpec.js" />
-    <Content Include="app\test\unit\login\LoginServiceSpec.js" />
-    <Content Include="app\test\unit\login\LoginCtrlSpec.js" />
-    <Content Include="app\test\unit\SanitySpec.js" />
-    <Content Include="app\test\unit\TestHelper.js" />
+    <Content Include="gulpfile.js" />
+    <Content Include="karma.conf.js" />
+    <Content Include="protractor.conf.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -370,14 +387,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\dist\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="app\src\content\style\app.scss" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".jshintrc" />
@@ -389,6 +402,8 @@
     <Content Include="package.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\src\content\style\app.scss" />
+    <None Include="Properties\PublishProfiles\a.pubxml" />
     <None Include="Properties\PublishProfiles\nune.pubxml" />
   </ItemGroup>
   <PropertyGroup>

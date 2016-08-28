@@ -62,7 +62,12 @@ namespace CaseManagement.Controllers
 
             if (!result.Succeeded)
             {
-                return GetErrorResult(result);
+                string errors = "";
+                foreach(string s in result.Errors)
+                {
+                    errors = errors + ", " + s;
+                }
+                return BadRequest(errors);
             }
 
             return Ok();

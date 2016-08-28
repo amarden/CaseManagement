@@ -26,7 +26,7 @@
             }).success(function () {
                 defer.resolve("success");
             }).error(function (data) {
-                defer.resolve(data.error_description);
+                defer.resolve(data.Message);
             });
             return defer.promise;
         };

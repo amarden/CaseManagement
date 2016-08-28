@@ -16,7 +16,7 @@
             $mdDialog.show({
                 controller: "RegisterCtrl",
                 controllerAs: 'rc',
-                templateUrl: 'login/register.dialog.html',
+                templateUrl: 'dist/login/register.dialog.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: false,
